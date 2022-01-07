@@ -1,12 +1,12 @@
 import discord
 import random
-import Bulbapedia_Scraper
+import bulbapedia_scraper
 
 
 TOKEN = 'OTI4Mzc3MzUxMTIzODk0Mjkz.YdX4yA.2xgrrP4gkw8C7dYCsaOn7ix9bDs'
 
 
-client = discord.Client()
+#client = discord.Client()
 
 @client.event
 async def on_ready():
@@ -43,6 +43,7 @@ async def on_message(message):
             scraper.run()
                 
             
-
-
-client.run(TOKEN)
+if (__name__ == __main__):
+#    client.run(TOKEN)
+    scraper = Bulbapedia_Scraper.Bulbapedia("Bulbasaur")
+    scraper.run()

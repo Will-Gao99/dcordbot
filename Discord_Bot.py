@@ -3,11 +3,15 @@ import random
 import scraper
 
 
-TOKEN = 'OTI4Mzc3MzUxMTIzODk0Mjkz.YdX4yA.2xgrrP4gkw8C7dYCsaOn7ix9bDs'
+# Grab token
+with open('token.txt') as f:
+    lines = f.readlines()
+    TOKEN = lines[0]
+    f.close()
 
 
-#client = discord.Client()
-'''
+client = discord.Client()
+
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
@@ -31,20 +35,17 @@ async def on_message(message):
             return
         elif user_message.lower() == '!random':
             response = f'This is your random number: {random.randrange(1000000)}'
-            await message.channel.send(response);
+            await message.channel.send(response)
             return
     if user_message.lower() == "!anywhere":
         await message.channel.send("This can be used anywhere!")
         return
-    if message.channel.name == 'pokemon':
-        if user_message[:3].lower()=="!ev":
-            print(user_message[4:])
-            scraper = scraper.Bulbapedia(user_message[4:]) 
-            scraper.run()
-'''                
+    if user_message[:3].lower()=="!ev":
+        print(user_message[4:])
+        scraperInstance = scraper.Bulbapedia(user_message[4:]) 
+        await message.channel.send(scraperInstance.search())
+              
             
 if (__name__ == "__main__"):
-#    client.run(TOKEN)
-    print("running properly")
-    scraper = scraper.Bulbapedia("Bulbasaur")
-    scraper.run()
+    client.run(TOKEN)
+

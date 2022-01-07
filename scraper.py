@@ -27,8 +27,6 @@ class Bulbapedia:
         page_soup = Soup(response.text, "html.parseer")
 
 
-
-
     def search(self):
         #Opens and grabs the page
         response = requests.get(self.url)
@@ -52,12 +50,6 @@ class Bulbapedia:
             stat = temp.find('td', attrs=STAT_MAP[i+1])
             statList.append(self._htmlToStat(stat))
 
-        return self.name+"'s EVs are: "+statList[0]+"Hp "+statList[1]+"Atk "+statList[2]+"Def "+statList[3]+"SpAtk "+statList[4]+"SpDef "+statList[5]+"Spd"
+        return self.name+"'s EVs are: "+statList[0]+" Hp, "+statList[1]+" Atk, "+statList[2]+" Def, "+statList[3]+" SpAtk, "+statList[4]+" SpDef, "+statList[5]+" Spd"
         
-            
-    
-        
-
-    def run(self):
-        print(self.search())
         

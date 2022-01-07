@@ -6,30 +6,25 @@ class Bulbapedia:
     def __init__(self, name):
         self.name = name
         self.url = 'https://bulbapedia.bulbagarden.net/wiki/_(Pok%C3%A9mon)'
+        self._updateUrl()
 
-    def keywords_search_words(self, user_message):
-        words = user_message.split()[1:]
-        keywords = '_'.join(words)
-        self.url = self.url[:40] + keywords +self.url[40:]
+    def _updateUrl(self):
+        self.url = self.url[:40] + '_'.join(self.name.split()[1:]) + self.url[40:]
 
     def search(self):
-#Opens and grabs the page
+        #Opens and grabs the page
         response = requests.get(self.url)
         page = response.text
-#html parsing
+        #html parsing
         page_soup = Soup(page, 'html.parser')
-#grabs content
+        #grabs content
         content = page_soup.tbody.findAll("")
-        with open("text.txt", "w", encoding="utf-8") as f:
-             f.write(page_soup.prettify())
-             f.close()
         for item in content:
-            print(page_soup.prettify())
+            print(item)
             #info = item.findAll('td')
             #print(item)
             #return EV Spread
 
     def run(self):
-        self.keywords_search_words(self.name)
         self.search()
         

@@ -1,13 +1,13 @@
 import discord
 import random
-import bulbapedia_scraper
+import scraper
 
 
 TOKEN = 'OTI4Mzc3MzUxMTIzODk0Mjkz.YdX4yA.2xgrrP4gkw8C7dYCsaOn7ix9bDs'
 
 
 #client = discord.Client()
-
+'''
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
@@ -39,11 +39,11 @@ async def on_message(message):
     if message.channel.name == 'pokemon':
         if user_message[:3].lower()=="!ev":
             print(user_message[4:])
-            scraper = Bulbapedia_Scraper.Bulbapedia(user_message[4:]) 
+            scraper = scraper.Bulbapedia(user_message[4:]) 
             scraper.run()
-                
+'''                
             
-if (__name__ == __main__):
+if (__name__ == "__main__"):
 #    client.run(TOKEN)
-    scraper = Bulbapedia_Scraper.Bulbapedia("Bulbasaur")
+    scraper = scraper.Bulbapedia("Bulbasaur")
     scraper.run()

@@ -45,5 +45,6 @@ async def on_message(message):
             
 if (__name__ == "__main__"):
 #    client.run(TOKEN)
+    print("running properly")
     scraper = scraper.Bulbapedia("Bulbasaur")
     scraper.run()

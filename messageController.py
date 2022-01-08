@@ -1,5 +1,6 @@
 import discord
 from scrapers.bulbapedia import Bulbapedia
+from scrapers.smogon import Smogon
 
 
 class MessageController:
@@ -53,7 +54,7 @@ class MessageController:
     Helper function to return the competitive spread of a Pokemon
     '''
     def _getComp(input):
-        pass
+        scraper = Smogon(input)
     
     '''
     Receives a message sent by app.py, populating the fields 

@@ -38,7 +38,7 @@ class Bulbapedia:
         div = page_soup.find("div", class_="mw-parser-output")
         table = div.find("table", class_="roundy")
         body = table.tbody
-        rows = body.find_all("tr")
+
         lst = []
         for child in body.children:
             lst.append(child)

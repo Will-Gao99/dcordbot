@@ -27,7 +27,7 @@ class Bulbapedia:
         page_soup = Soup(response.text, "html.parseer")
 
 
-    def search(self):
+    def getEvs(self):
         #Opens and grabs the page
         response = requests.get(self.url)
         page = response.text

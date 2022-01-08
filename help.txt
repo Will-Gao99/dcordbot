@@ -1,0 +1,6 @@
+Below is a list of commands that you can give to the bot. Command arguments are wrapped in $Dollar Signs$.
+All other syntax, such as brackets, are neccesary. Optional arguments are italicized.
+e.g. "!ev $pokemon name$" => !ev Bulbasaur
+
+List of commands:
+!ev $pokemon name$: Provides the EVs awarded upon defeating this pokemon

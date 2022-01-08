@@ -1,5 +1,5 @@
 import discord
-from scraper import Bulbapedia
+from scrapers.bulbapedia import Bulbapedia
 
 
 class MessageController:
@@ -41,7 +41,20 @@ class MessageController:
             if command[i] != message[i]:
                 return False
         return True
+    
+    '''
+    Helper function to return the EVs of a Pokemon
+    '''
+    def _getEvs(input):
+        scraper = Bulbapedia(input)
+        return scraper.getEVs()
 
+    '''
+    Helper function to return the competitive spread of a Pokemon
+    '''
+    def _getComp(input):
+        pass
+    
     '''
     Receives a message sent by app.py, populating the fields 
     of the class with the message's metadata. This method also
@@ -54,10 +67,10 @@ class MessageController:
         self.rawMessage = message
         print(f'{self.author}: {self.contents} (Sent in #{self.channel}')
 
+        # TODO: Handle errors
         # User is asking for the Effort Values of a Pokemon
         if _matchCommand(self.message.lower(), "!ev"):
-            scraper = Bulbapedia(self.message[4:])
-            await self.channel.send(scraper.getEvs())
+            self.channel.send(_getEvs(self.message[4:]))
 
         # User is asking for a Competitive Set for this Pokemon
         if _matchCommand(self.message.lower(), "!comp"):
@@ -72,4 +85,6 @@ class MessageController:
                 output = ""
                 for line in lines:
                     output += (line + "\n")
-                await self.channel.send(output)
+                self.channel.send(output)
+
+    

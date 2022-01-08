@@ -1,7 +1,6 @@
 from messageController import MessageController
 import discord
 import random
-import scraper
 
 '''
 This file is the entrance point of our Discord Bot. It contains the routes/listeners
@@ -36,14 +35,15 @@ def main():
         if message.author == client.user:
             return
         else:
-            messageController.receive(message)
+            await messageController.receive(message)
               
 
 def test():
     messageController = MessageController()
-    messageController.receive("!comp garchomp")
+    print("Hello")
 
 
 if (__name__ == "__main__"):
-    main()
+    #main()
+    test()
 

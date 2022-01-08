@@ -38,7 +38,12 @@ def main():
         else:
             messageController.receive(message)
               
-            
+
+def test():
+    messageController = MessageController()
+    messageController.receive("!comp garchomp")
+
+
 if (__name__ == "__main__"):
     main()
 

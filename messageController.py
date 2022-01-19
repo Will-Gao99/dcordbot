@@ -35,7 +35,7 @@ class MessageController:
     first n characters of the command, where n is the length of the command. 
     Returns False otherwise
     '''
-    def _matchCommand(message, command):
+    def _matchCommand(self, message, command):
         if len(command) > len(message):
             return False
         for i in range(len(command)):
@@ -46,14 +46,14 @@ class MessageController:
     '''
     Helper function to return the EVs of a Pokemon
     '''
-    def _getEvs(input):
+    def _getEvs(self, input):
         scraper = Bulbapedia(input)
         return scraper.getEVs()
 
     '''
     Helper function to return the competitive spread of a Pokemon
     '''
-    def _getComp(input):
+    def _getComp(self, input):
         scraper = Smogon(input)
     
     '''
@@ -70,16 +70,17 @@ class MessageController:
 
         # TODO: Handle errors
         # User is asking for the Effort Values of a Pokemon
-        if _matchCommand(self.message.lower(), "!ev"):
-            self.channel.send(_getEvs(self.message[4:]))
+        if self._matchCommand(self.message.lower(), "!ev"):
+            # TODO: Refactor magic numbers out of message slicing
+            self.channel.send(self._getEvs(self.message[4:]))
 
         # User is asking for a Competitive Set for this Pokemon
-        if _matchCommand(self.message.lower(), "!comp"):
+        if self._matchCommand(self.message.lower(), "!comp"):
             print("Not implemented yet")
 
         # TODO: Send the help message as a DM or hidden from other users?
         # User is asking for help
-        if _matchCommand(self.message.lower(), "!help"):
+        if self._matchCommand(self.message.lower(), "!help"):
             with open('help.txt') as f:
                 lines = f.readlines()
                 f.close()
